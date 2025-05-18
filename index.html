@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Encuesta Interactiva</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .contenedor {
+      background-color: #ffffff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .contenedor img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 20px;
+      color: #00796b;
+    }
+
+    form {
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    #mensaje {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #00796b;
+    }
+  </style>
+</head>
+<body>
+
+<div class="contenedor">
+  <img src="encuesta.png" alt="Encuesta visual">
+  <h1>¿Cuál es tu comida favorita?</h1>
+  <form onsubmit="enviarEncuesta(); return false;">
+    <label><input type="radio" name="comida" value="Pizza">Pizza</label>
+    <label><input type="radio" name="comida" value="Hamburguesa">Hamburguesa</label>
+    <label><input type="radio" name="comida" value="Tacos">Tacos</label>
+    <label><input type="radio" name="comida" value="Pasta">Pasta</label>
+    <button type="submit">Enviar respuesta</button>
+  </form>
+  <p id="mensaje"></p>
+</div>
+
+<script>
+  function enviarEncuesta() {
+    const opciones = document.getElementsByName("comida");
+    let seleccion = null;
+    for (let i = 0; i < opciones.length; i++) {
+      if (opciones[i].checked) {
+        seleccion = opciones[i].value;
+        break;
+      }
+    }
+
+    const mensaje = document.getElementById("mensaje");
+    if (seleccion) {
+      mensaje.innerText = "¡Gracias por votar por " + seleccion + "!";
+    } else {
+      mensaje.innerText = "Por favor selecciona una opción.";
+    }
+  }
+</script>
+
+</body>
+</html>
